@@ -1,13 +1,14 @@
-#lang racket
-
 ;;;; ***************************************************************************
-;;;; Ignas Kamugisha (IAK36)
+;;;; Ignas Kamugisha (iak36)
 ;;;; Racket/Scheme Programming Exercise
 ;;;; ***************************************************************************
 
 ;;;; ***************************************************************************
 ;;;; Helper Functions (General)
 ;;;; ***************************************************************************
+
+
+#lang racket
 
 ;;; atom? returns true if x is not a pair and not null
 (define atom?
@@ -48,7 +49,7 @@
 (define squareroot
   (lambda (val iter)
     (cond
-      ;; Base Case: 0 iterations means we just return the original value
+      ;; Base Case: 0 iterations 
       [(zero? iter) val]
       ;; Recursive Step: Calculate previous approximation (old) and apply formula
       [else
@@ -74,7 +75,7 @@
        (cons (car main) (removesubsequence sub (cdr main)))])))
 
 ;;;; ***************************************************************************
-;;;; Part 2: Deep Recursion (Star Functions)
+;;;; Deep Recursion 
 ;;;; ***************************************************************************
 
 ;; reverse* takes a nested list and reverses the contents of the list and all 
@@ -121,9 +122,9 @@
       [else
        (car lis)])))
 
-;;;; ***************************************************************************
-;;;; Part 3: Complex Logic and Matrices
-;;;; ***************************************************************************
+;;;; ****************************************
+;;;; Matrices
+;;;; *****************************************
 
 ;; Helper for numorder*?: Calculates the "value" of an item.
 ;; If it is a number, return it. If it is a list, sum its contents deeply.
@@ -146,9 +147,8 @@
       [(null? (cdr lis))
        ;; Must still check if the single item itself (if a list) is ordered
        (if (list? (car lis))
-           (numorder*? (car lis))
-           #t)]
-      ;; Recursive Step
+           (numorder*? (car lis)) #t)]
+  
       [else
        (let ([val1 (calc-value (car lis))]
              [val2 (calc-value (car (cdr lis)))])
@@ -176,9 +176,9 @@
 (define vectormult
   (lambda (vec mat)
     (cond
-      ;; Base Case: If the matrix row is empty, we are done
+      ;; Base Case: If the matrix row is empty, 
       [(null? (car mat)) '()]
-      ;; Recursive Step: Dotproduct vec with first col, then recurse on rest cols
+      ;; Recursive Step: Dotproduct vec with first col, then recurse on rest of columns
       [else
        (cons (dotproduct vec (get-first-col mat))
              (vectormult vec (remove-first-col mat)))])))
